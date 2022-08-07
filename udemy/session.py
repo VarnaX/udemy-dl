@@ -26,6 +26,7 @@ THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 from udemy.compat import (
     requests,
+    cloudscraper,
     HEADERS,
 )
 
@@ -34,6 +35,8 @@ class Session(object):
     def __init__(self):
         self._headers = HEADERS
         self._session = requests.sessions.Session()
+        self._session = cloudscraper.create_scraper(sess=self._session)
+
 
     def _set_auth_headers(self, access_token="", client_id=""):
         self._headers["Authorization"] = "Bearer {}".format(access_token)
